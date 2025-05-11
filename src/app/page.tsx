@@ -1,5 +1,7 @@
-export default function Home() {
-  return (
-    <h1 className="text-red-600">Hello</h1>
+const HomPage = () => {
+  return (  
+    <h1>HomPage</h1>
   );
 }
+
+export default HomPage;
