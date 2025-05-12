@@ -14,12 +14,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PanelTopClose, Save } from "lucide-react";
+import { CreateProduct } from "@/actions/products/create-product";
+import { FormatMonetaryValue } from "@/lib/currency";
 
 interface FormProductProps {
-    // defaultValues?: TransactionSchemaType;
-    // productId?: string;
-    open: boolean;
-    setOpen: (open: boolean) => void;
+  // defaultValues?: TransactionSchemaType;
+  // productId?: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
 const formSchema = z.object({
@@ -39,7 +41,7 @@ const formSchema = z.object({
 });
 
 export function FormProduct({
-    // defaultValues,
+  // defaultValues,
   // productId,
   open,
   setOpen,
@@ -59,6 +61,15 @@ export function FormProduct({
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+
+    try {
+      return CreateProduct(values);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setOpen(false);
+      form.reset();
+    }
   }
 
   return (
@@ -97,7 +108,17 @@ export function FormProduct({
             <FormItem>
               <FormLabel>Preço</FormLabel>
               <FormControl>
-                <Input placeholder="Digite o preço..." {...field} />
+                <Input
+                  placeholder="R$ 3.000,00"
+                  type="text"
+                  {...field}
+                  value={FormatMonetaryValue(field.value)}
+                  onChange={(e) => {
+                    const inputValue = e.target.value.replace(/[^\d]/g, "");
+                    const numericValue = Number(inputValue) / 100;
+                    field.onChange(numericValue);
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

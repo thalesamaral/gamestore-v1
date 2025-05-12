@@ -2,9 +2,8 @@ import { GetProducts } from "@/actions/products/get-products";
 import AddProductButton from "@/components/products/add-product-button";
 import { ListProducts } from "@/components/products/list-products";
 
-const products = await GetProducts();
-
 export default async function ProductsPage() {
+  const products = await GetProducts();
   return (
     <>
       <div className="flex flex-col p-5">
