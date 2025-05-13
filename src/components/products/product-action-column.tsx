@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { ProductSheet } from "./product-sheet";
 import { Product } from "@prisma/client";
+import { ProductAlertDelete } from "./product-alert-delete";
 
 interface ProductActionColumnProps {
   product: Product;
@@ -20,10 +21,18 @@ interface ProductActionColumnProps {
 
 export function ProductActionColumn({ product }: ProductActionColumnProps) {
   const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
 
   return (
     <>
-      {open && <ProductSheet open setOpen={setOpen} product={product}/>}
+      {open && <ProductSheet open setOpen={setOpen} product={product} />}
+      {openDelete && (
+        <ProductAlertDelete
+          open={openDelete}
+          setOpen={setOpenDelete}
+          product={product}
+        />
+      )}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline">
@@ -36,7 +45,9 @@ export function ProductActionColumn({ product }: ProductActionColumnProps) {
           <DropdownMenuItem onClick={() => setOpen(true)}>
             Editar
           </DropdownMenuItem>
-          <DropdownMenuItem>Deletar</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setOpenDelete(true)}>
+            Deletar
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
