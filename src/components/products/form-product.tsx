@@ -16,10 +16,12 @@ import { Input } from "@/components/ui/input";
 import { PanelTopClose, Save } from "lucide-react";
 import { CreateProduct } from "@/actions/products/create-product";
 import { FormatMonetaryValue } from "@/lib/currency";
+import { Product } from "@prisma/client";
+import { UpdateProduct } from "@/actions/products/update-product";
 
 interface FormProductProps {
   // defaultValues?: TransactionSchemaType;
-  // productId?: string;
+  product?: Product;
   open: boolean;
   setOpen: (open: boolean) => void;
 }
@@ -45,14 +47,15 @@ export function FormProduct({
   // productId,
   open,
   setOpen,
+  product,
 }: FormProductProps) {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      description: "",
-      price: 50,
+      name: product?.name || "",
+      description: product?.description || "",
+      price: product?.price || 50,
     },
   });
 
@@ -63,7 +66,11 @@ export function FormProduct({
     console.log(values);
 
     try {
-      return CreateProduct(values);
+      if (!product) return CreateProduct(values);
+      return UpdateProduct({
+        id: product.id,
+        ...values,
+      });
     } catch (error) {
       console.error(error);
     } finally {
