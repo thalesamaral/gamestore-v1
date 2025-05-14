@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -16,60 +15,55 @@ import { Input } from "@/components/ui/input";
 import { PanelTopClose, Save } from "lucide-react";
 import { CreateProduct } from "@/actions/products/create-product";
 import { FormatMonetaryValue } from "@/lib/currency";
-import { Product } from "@prisma/client";
+import { Category, Product } from "@prisma/client";
 import { UpdateProduct } from "@/actions/products/update-product";
+import {
+  CATEGORY_OPTIONS,
+  ProductSchema,
+  ProductSchemaType,
+} from "@/schemas/product-schema";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 interface FormProductProps {
-  // defaultValues?: TransactionSchemaType;
-  product?: Product;
   open: boolean;
   setOpen: (open: boolean) => void;
+  product?: Product;
+  // defaultValues?: ProductSchemaType;
 }
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  description: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  price: z
-    .number({
-      required_error: "O valor é obrigatório.",
-    })
-    .positive({
-      message: "O valor deve ser positivo.",
-    }),
-});
-
 export function FormProduct({
-  // defaultValues,
-  // productId,
   open,
   setOpen,
   product,
 }: FormProductProps) {
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ProductSchemaType>({
+    resolver: zodResolver(ProductSchema),
     defaultValues: {
       name: product?.name || "",
       description: product?.description || "",
       price: product?.price || 50,
+      category: product?.category || Category.OTHER,
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async (data: ProductSchemaType) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    console.log(data);
 
     try {
-      if (!product) return CreateProduct(values);
-      return UpdateProduct({
+      if (!product) return CreateProduct(data);
+      return await UpdateProduct({
         id: product.id,
-        ...values,
+        ...data,
       });
     } catch (error) {
       console.error(error);
@@ -77,7 +71,7 @@ export function FormProduct({
       setOpen(false);
       form.reset();
     }
-  }
+  };
 
   return (
     <Form {...form}>
@@ -127,6 +121,30 @@ export function FormProduct({
                   }}
                 />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Categoria</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione a categoria..." />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {CATEGORY_OPTIONS.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}

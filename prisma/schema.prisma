@@ -14,8 +14,16 @@ datasource db {
 }
 
 model Product {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   description String
   price       Float
+  category    Category
+}
+
+enum Category {
+  GAME
+  CONSOLE
+  PERIPHERAL
+  OTHER
 }

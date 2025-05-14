@@ -1,10 +1,11 @@
 "use client";
 
-import { productColumns, Produto } from "./columns";
+import { Product } from "@prisma/client";
+import { productColumns } from "./columns";
 import { DataTable } from "../data-table";
 
 interface ListProductsProps {
-  data: Produto[];
+  data: Product[];
 }
 export function ListProducts({ data }: ListProductsProps) {
   return data ? <DataTable columns={productColumns} data={data} /> : "";
