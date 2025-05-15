@@ -7,9 +7,9 @@ export default async function ProductsPage() {
 
   return (
     <>
-      <div className="flex flex-col p-6 items-center">
-        <h1 className="text-4xl">Cadastro de Produtos</h1>
-        <div className="container mx-auto py-10">
+      <div className="flex flex-col p-10 items-center">
+        <h1 className="text-4xl pb-8">Cadastro de Produtos</h1>
+        <div className="flex flex-col gap-2 container mx-auto py-10">
           <Header />
           <ListProducts data={products}></ListProducts>
         </div>

@@ -7,14 +7,14 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Category, Product } from "@prisma/client";
+import { Product } from "@prisma/client";
 import { FormProduct } from "./form-product";
 
 interface ProductProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   product?: Product;
-  category?: Category;
+  // category?: Category;
 }
 
 export function ProductSheet({ open, setOpen, product }: ProductProps) {
