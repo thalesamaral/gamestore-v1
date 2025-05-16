@@ -12,7 +12,7 @@ import { CATEGORY_LABELS } from "@/schemas/product-schema"; // ajuste o caminho 
 
 // import { CartContext } from "../contexts/cart";
 // import CartSheet from "./cart-sheet";
-import Products from "./products";
+import ProductMenu from "./product-menu";
 
 interface CatalogoCategoriesProps {
   productsByCategory: Record<Category, Product[]>;
@@ -23,7 +23,7 @@ const CatalogoCategories = ({
 }: CatalogoCategoriesProps) => {
   const categoryKeys = Object.keys(CATEGORY_LABELS) as Category[];
   const [selectedCategory, setSelectedCategory] = useState<Category>(
-    categoryKeys[0] ?? Category.GAME
+    categoryKeys[0]
   );
   const handleCategoryClick = (category: Category) => {
     setSelectedCategory(category);
@@ -32,7 +32,8 @@ const CatalogoCategories = ({
   const getCategoryButtonVariant = (category: Category) => {
     return selectedCategory === category ? "default" : "secondary";
   };
-
+  // console.log(1)
+  // console.log(productsByCategory[selectedCategory])
   return (
     <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl bg-white">
       <div className="p-5">
@@ -74,8 +75,8 @@ const CatalogoCategories = ({
       <h3 className="px-5 pt-2 font-semibold">
         {CATEGORY_LABELS[selectedCategory]}
       </h3>
-
-      <Products products={productsByCategory[selectedCategory] ?? []} />
+      
+      <ProductMenu productsMenu={productsByCategory[selectedCategory] ?? []} />
 
       {/* {products.length > 0 && (
         <div className="fixed bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-white px-5 py-3">

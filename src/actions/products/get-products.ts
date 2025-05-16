@@ -1,5 +1,11 @@
 import { db } from "@/lib/prisma";
 
+export async function GetProducts() {
+  const products = await db.product.findMany();
+
+  return JSON.parse(JSON.stringify(products));
+}
+
 // interface GetProductsParams {
 //   searchParams: {
 //     id: string,
@@ -8,12 +14,6 @@ import { db } from "@/lib/prisma";
 //     price: number,
 //   };
 // }
-
-export async function GetProducts() {
-  const products = await db.product.findMany();
-
-  return JSON.parse(JSON.stringify(products));
-}
 
 // export async function GetProducts({
 //   searchParams: { id, name, description, price },

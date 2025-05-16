@@ -20,12 +20,6 @@ const CatalogoHeader = () => {
       >
         <ChevronLeftIcon />
       </Button>
-      <Image
-        src={"/game-wallpaper.avif"}
-        alt={"game-wallpaper"}
-        fill
-        className="object-cover"
-      />
       <Button
         variant="secondary"
         size="icon"
@@ -34,6 +28,12 @@ const CatalogoHeader = () => {
       >
         <ScrollTextIcon />
       </Button>
+      <Image
+        src={"/game-wallpaper.avif"}
+        alt={"game-wallpaper"}
+        fill
+        className="object-cover"
+      />
     </div>
   );
 };
