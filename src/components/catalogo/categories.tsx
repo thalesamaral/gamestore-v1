@@ -12,7 +12,7 @@ import { CATEGORY_LABELS } from "@/schemas/product-schema"; // ajuste o caminho 
 
 // import { CartContext } from "../contexts/cart";
 // import CartSheet from "./cart-sheet";
-import ProductMenu from "./product-menu";
+import ProductMenu from "./category-products";
 
 interface CatalogoCategoriesProps {
   productsByCategory: Record<Category, Product[]>;
@@ -39,7 +39,7 @@ const CatalogoCategories = ({
       <div className="p-5">
         <div className="flex items-center gap-3">
           <Image
-            src={"/game-wallpaper.avif"}
+            src={"/game-logo.jpg"}
             alt={"game-wallpaper"}
             height={45}
             width={45}
@@ -75,8 +75,10 @@ const CatalogoCategories = ({
       <h3 className="px-5 pt-2 font-semibold">
         {CATEGORY_LABELS[selectedCategory]}
       </h3>
-      
-      <ProductMenu productsMenu={productsByCategory[selectedCategory] ?? []} />
+
+      <ProductMenu
+        categoryProducts={productsByCategory[selectedCategory] ?? []}
+      />
 
       {/* {products.length > 0 && (
         <div className="fixed bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-white px-5 py-3">

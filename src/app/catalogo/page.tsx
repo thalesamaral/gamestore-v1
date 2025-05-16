@@ -15,7 +15,7 @@ export default async function CatalogoPage() {
   products.forEach((product: Product) => {
     productsByCategory[product.category].push(product);
   });
-  
+
   return (
     <>
       <div>
@@ -25,4 +25,3 @@ export default async function CatalogoPage() {
     </>
   );
 }
-// products.forEach((product: { category: string | number; }) => {

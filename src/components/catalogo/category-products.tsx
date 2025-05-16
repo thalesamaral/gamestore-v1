@@ -4,16 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface ProductsProps {
-  productsMenu: Product[];
+  categoryProducts: Product[];
 }
-const ProductMenu = ({ productsMenu }: ProductsProps) => {
+const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
   return (
     <div className="space-y-3 px-5">
-      {productsMenu.map((product) => (
+      {categoryProducts.map((product) => (
         <Link
           key={product.id}
           href={`/catalogo/${product.id}`}
-          // href="/"
           className="flex items-center justify-between gap-10 border-b py-3"
         >
           {/* ESQUERDA */}
@@ -26,11 +25,11 @@ const ProductMenu = ({ productsMenu }: ProductsProps) => {
               {FormatMonetaryValue(product.price)}
             </p>
           </div>
-          
+
           {/* DIREITA */}
           <div className="relative min-h-[82px] min-w-[120px]">
             <Image
-              src={"/game-wallpaper.avif"}
+              src={"/game.jpeg"}
               alt={product.name}
               fill
               className="rounded-lg object-contain"
@@ -42,4 +41,4 @@ const ProductMenu = ({ productsMenu }: ProductsProps) => {
   );
 };
 
-export default ProductMenu;
+export default CategoryProducts;
