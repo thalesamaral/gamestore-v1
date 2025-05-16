@@ -35,6 +35,15 @@ export const productColumns: ColumnDef<Product>[] = [
     cell: ({ row: { original: product } }) => CATEGORY_LABELS[product.category],
   },
   {
+    accessorKey: "stock",
+    header: "Estoque",
+    // cell: ({ row: { original: product } }) => new Intl.NumberFormat("pt-BR").format(product.stock),
+  },
+  {
+    accessorKey: "imageUrl",
+    header: "ImageUrl",
+  },
+  {
     accessorKey: "action",
     header: "Ações",
     cell: ({ row: { original: product } }) => (

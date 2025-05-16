@@ -37,19 +37,17 @@ interface FormProductProps {
   // defaultValues?: ProductSchemaType;
 }
 
-export function FormProduct({
-  open,
-  setOpen,
-  product,
-}: FormProductProps) {
+export function FormProduct({ open, setOpen, product }: FormProductProps) {
   // 1. Define your form.
   const form = useForm<ProductSchemaType>({
     resolver: zodResolver(ProductSchema),
     defaultValues: {
       name: product?.name || "",
       description: product?.description || "",
-      price: product?.price || 50,
+      price: product?.price || 0,
       category: product?.category || Category.OTHER,
+      imageUrl: product?.imageUrl || "",
+      stock: product?.stock,
     },
   });
 
@@ -57,7 +55,6 @@ export function FormProduct({
   const onSubmit = async (data: ProductSchemaType) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(data);
 
     try {
       if (!product) return CreateProduct(data);
@@ -145,6 +142,39 @@ export function FormProduct({
                   ))}
                 </SelectContent>
               </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="stock"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Estoque</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="0"
+                  type="number"
+                  max={1000000}
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(Number(e.target.value))}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="imageUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Link da imagem</FormLabel>
+              <FormControl>
+                <Input placeholder="Adicione o link..." {...field} type="text" />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

@@ -29,7 +29,8 @@ const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
           {/* DIREITA */}
           <div className="relative min-h-[82px] min-w-[120px]">
             <Image
-              src={"/game.jpeg"}
+              // src={"/game-product.jpeg"}
+              src={product.imageUrl}
               alt={product.name}
               fill
               className="rounded-lg object-contain"

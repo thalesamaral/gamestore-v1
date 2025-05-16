@@ -44,6 +44,16 @@ export const ProductSchema = z.object({
   category: z.nativeEnum(Category, {
     required_error: "A categoria é obrigatória.",
   }),
+  imageUrl: z.string().trim().min(1, {
+    message: "O link é obrigatório.",
+  }),
+  stock: z
+    .number({
+      required_error: "A quantidade é obrigatória.",
+    })
+    .positive({
+      message: "O valor deve ser positivo.",
+    }),
 });
 
 export type ProductSchemaType = z.infer<typeof ProductSchema>;

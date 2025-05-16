@@ -10,6 +10,8 @@ interface UpdateProductParams {
   description: string;
   price: number;
   category: Category;
+  stock: number;
+  imageUrl: string;
 }
 
 export async function UpdateProduct({
@@ -18,10 +20,12 @@ export async function UpdateProduct({
   description,
   price,
   category,
+  stock,
+  imageUrl,
 }: UpdateProductParams) {
   await db.product.update({
     where: { id },
-    data: { name, description, price, category },
+    data: { name, description, price, category, stock, imageUrl },
   });
   revalidatePath("/products");
 }
