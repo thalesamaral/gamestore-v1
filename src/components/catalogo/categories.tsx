@@ -32,8 +32,6 @@ const CatalogoCategories = ({
   const getCategoryButtonVariant = (category: Category) => {
     return selectedCategory === category ? "default" : "secondary";
   };
-  // console.log(1)
-  // console.log(productsByCategory[selectedCategory])
   return (
     <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl bg-white">
       <div className="p-5">
@@ -72,9 +70,9 @@ const CatalogoCategories = ({
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
 
-      <h3 className="px-5 pt-2 font-semibold">
+      {/* <h3 className="px-5 pt-2 font-semibold">
         {CATEGORY_LABELS[selectedCategory]}
-      </h3>
+      </h3> */}
 
       <ProductMenu
         categoryProducts={productsByCategory[selectedCategory] ?? []}
