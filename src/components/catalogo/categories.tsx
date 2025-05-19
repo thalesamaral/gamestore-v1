@@ -12,7 +12,7 @@ import { CATEGORY_LABELS } from "@/schemas/product-schema"; // ajuste o caminho 
 
 // import { CartContext } from "../contexts/cart";
 // import CartSheet from "./cart-sheet";
-import ProductMenu from "./category-products";
+import CategoryProducts from "./category-products";
 
 interface CatalogoCategoriesProps {
   productsByCategory: Record<Category, Product[]>;
@@ -74,7 +74,7 @@ const CatalogoCategories = ({
         {CATEGORY_LABELS[selectedCategory]}
       </h3> */}
 
-      <ProductMenu
+      <CategoryProducts
         categoryProducts={productsByCategory[selectedCategory] ?? []}
       />
 

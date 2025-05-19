@@ -51,8 +51,8 @@ export const ProductSchema = z.object({
     .number({
       required_error: "A quantidade é obrigatória.",
     })
-    .positive({
-      message: "O valor deve ser positivo.",
+    .min(0, {
+      message: "O valor mínimo é 0.",
     }),
 });
 

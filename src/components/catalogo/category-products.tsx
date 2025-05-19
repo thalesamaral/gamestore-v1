@@ -17,7 +17,7 @@ const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
         >
           {/* ESQUERDA */}
           <div>
-            <h3 className="text-sm font-semibold">{product.name}</h3>
+            <h3 className="text-base font-semibold">{product.name}</h3>
             <p className="line-clamp-2 text-sm text-muted-foreground">
               {product.description}
             </p>
@@ -25,7 +25,7 @@ const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
               {FormatMonetaryValue(product.price)}
             </p>
             <p className="text-sm text-muted-foreground">
-              Quantidade em estoque{" "}
+              Quantidade em estoque:{" "}
               <span className="font-bold text-purple-500">
                 {new Intl.NumberFormat("pt-BR").format(product.stock)}
               </span>

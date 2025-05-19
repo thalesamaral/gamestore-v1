@@ -108,6 +108,7 @@ export function FormProduct({ open, setOpen, product }: FormProductProps) {
               <FormControl>
                 <Input
                   placeholder="R$ 3.000,00"
+                  max={1000000000}
                   type="text"
                   {...field}
                   value={FormatMonetaryValue(field.value)}
@@ -156,6 +157,7 @@ export function FormProduct({ open, setOpen, product }: FormProductProps) {
                 <Input
                   placeholder="0"
                   type="number"
+                  min={0}
                   max={1000000}
                   {...field}
                   value={field.value ?? ""}

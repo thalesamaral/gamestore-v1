@@ -9,13 +9,10 @@ export default async function ProductsPage() {
   return (
     <>
       <div>
-          <ProductsHeader />
-        <div className="flex flex-col p-10 items-center">
-          {/* <h1 className="text-4xl pb-8">Cadastro de Produtos</h1> */}
-          <div className="flex flex-col gap-2 container mx-auto py-10">
-            <Head />
-            <ListProducts data={products}></ListProducts>
-          </div>
+        <ProductsHeader />
+        <div className="flex flex-col gap-2 container mx-auto py-10 px-4">
+          <Head />
+          <ListProducts data={products}></ListProducts>
         </div>
       </div>
     </>

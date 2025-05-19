@@ -11,9 +11,7 @@ const ProductsHeader = () => {
   // const handleOrdersClick = () => router.push(`/${slug}/orders`);
   return (
     <div className="relative h-[100px] w-full">
-      <div className="flex flex-col p-10 items-center">
-          <h1 className="text-4xl">Cadastro de Produtos</h1>
-      </div>
+      <h1 className="text-4xl text-center py-10">Cadastro de Produtos</h1>
       <Button
         variant="secondary"
         size="icon"

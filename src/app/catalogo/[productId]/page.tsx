@@ -3,7 +3,7 @@ import { db } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
 interface ProductPageProps {
-  params: Promise<{ slug: string; productId: string }>;
+  params: Promise<{ productId: string }>;
 }
 
 const ProductIdPage = async ({ params }: ProductPageProps) => {
