@@ -89,7 +89,7 @@ const CatalogoCategories = ({
               </span>
             </p>
           </div>
-          <Button onClick={toggleCart}>Ver sacola</Button>
+          <Button onClick={toggleCart}>Ver carrinho</Button>
           <CartSheet />
         </div>
       )} */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { Product } from "@prisma/client";
-import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
 
@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FormatMonetaryValue } from "@/lib/currency";
 
-// import CartSheet from "../../components/cart-sheet";
-// import { CartContext } from "../../contexts/cart";
+import CartSheet from "../cart-sheet";
+import { CartContext } from "../contexts/cart";
 
 interface ProductDetailsProps {
   product: Product;
@@ -39,7 +39,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
   };
   return (
     <>
-      <div className="relative z-50 mt-[-1.5rem] flex flex-auto flex-col overflow-hidden rounded-t-3xl p-5">
+      <div className="relative z-50 mt-[-1.5rem] flex flex-auto flex-col overflow-hidden rounded-t-3xl p-5 bg-white">
         <div className="flex-auto overflow-hidden">
           {/* LOJA */}
           <div className="flex items-center gap-1.5">
@@ -53,14 +53,9 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             <p className="text-xs text-muted-foreground">Gamestore</p>
           </div>
 
-          {/* NOME DO PRODUTO */}
-          <h2 className="mt-1 text-xl font-semibold">{product.name}</h2>
-
-          {/* PREÇO E QUANTIDADE */}
-          <div className="mt-3 flex items-center justify-between">
-            <h3 className="text-xl font-semibold">
-              {FormatMonetaryValue(product.price)}
-            </h3>
+          {/* NOME E QUANTIDADE */}
+          <div className="mt-4 flex items-center justify-between">
+            <h2 className="text-xl font-semibold">{product.name}</h2>
             <div className="flex items-center gap-3 text-center">
               <Button
                 variant="outline"
@@ -69,7 +64,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               >
                 <ChevronLeftIcon />
               </Button>
-              <p className="w-4">{quantity}</p>
+              <p className="w-6">{quantity}</p>
               <Button
                 variant="destructive"
                 className="h-8 w-8 rounded-xl"
@@ -80,30 +75,26 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </div>
           </div>
 
-          <ScrollArea className="h-full">
-            {/* SOBRE */}
-            <div className="mt-6 space-y-3">
-              <h4 className="font-semibold">Sobre</h4>
+          {/* PREÇO */}
+          <h3 className="text-xl font-semibold">
+            {FormatMonetaryValue(product.price)}
+          </h3>
+
+          {/* SOBRE */}
+          <h4 className="mt-4 font-semibold">Sobre</h4>
+          <ScrollArea className="h-3/4">
+            <div className="mb-4 space-y-3">
               <p className="text-sm text-muted-foreground">
                 {product.description}
               </p>
             </div>
-
-            {/* INGREDIENTS */}
-            <div className="mt-6 space-y-3">
-              <div className="5 flex items-center gap-1">
-                <ChefHatIcon size={18} />
-                <h4 className="font-semibold">Ingredientes</h4>
-              </div>
-            </div>
           </ScrollArea>
         </div>
-
         <Button className="w-full rounded-full" onClick={handleAddToCart}>
-          Adicionar à sacola
+          Adicionar ao carrinho
         </Button>
+        <CartSheet />
       </div>
-      <CartSheet />
     </>
   );
 };

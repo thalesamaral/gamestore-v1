@@ -1,5 +1,5 @@
-import ProductDetails from "@/components/productId/product-details";
-import ProductHeader from "@/components/productId/product-header";
+import ProductDetails from "@/components/catalogo/productId/product-details";
+import ProductHeader from "@/components/catalogo/productId/product-header";
 import { db } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
