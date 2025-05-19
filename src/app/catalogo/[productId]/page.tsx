@@ -1,3 +1,4 @@
+import ProductDetails from "@/components/productId/product-details";
 import ProductHeader from "@/components/productId/product-header";
 import { db } from "@/lib/prisma";
 import { notFound } from "next/navigation";
@@ -16,7 +17,7 @@ const ProductIdPage = async ({ params }: ProductPageProps) => {
   return (
     <div className="flex h-full flex-col">
       <ProductHeader product={product} />
-      {/* <ProductDetails product={product} /> */}
+      <ProductDetails product={product} />
     </div>
   );
 };
