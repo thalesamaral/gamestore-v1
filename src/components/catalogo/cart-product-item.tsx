@@ -7,22 +7,22 @@ import { FormatMonetaryValue } from "@/lib/currency";
 
 import { CartContext, CartProduct } from "./contexts/cart";
 
-interface CartItemProps {
+interface CartProductItemProps {
   product: CartProduct;
 }
 
-const CartProductItem = ({ product }: CartItemProps) => {
+const CartProductItem = ({ product }: CartProductItemProps) => {
   const { decreaseProductQuantity, increaseProductQuantity, removeProduct } =
     useContext(CartContext);
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between mb-3">
       {/* ESQUERDA */}
       <div className="flex items-center gap-3">
         <div className="relative h-20 w-20 rounded-xl bg-gray-100">
-          <Image src={product.imageUrl} alt={product.name} fill />
+          <Image src={product.imageUrl} alt={product.name} fill className="rounded-lg object-cover"/>
         </div>
         <div className="space-y-1">
-          <p className="max-w-[90%] truncate text-ellipsis text-xs">
+          <p className="max-w-[90%] truncate text-xs font-semibold">
             {product.name}
           </p>
           <p className="text-sm font-semibold">

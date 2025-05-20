@@ -22,6 +22,9 @@ export const productColumns: ColumnDef<Product>[] = [
   {
     accessorKey: "description",
     header: "Descrição",
+    cell: ({ row: { original: product } }) => (
+      <span className="line-clamp-4">{product.description}</span>
+    )
   },
   {
     accessorKey: "price",

@@ -3,15 +3,15 @@
 import { Category, Product } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-// import { FormatMonetaryValue } from "@/lib/currency";
-import { CATEGORY_LABELS } from "@/schemas/product-schema"; // ajuste o caminho conforme necessário
+import { FormatMonetaryValue } from "@/lib/currency";
+import { CATEGORY_LABELS } from "@/schemas/product-schema";
 
-// import { CartContext } from "../contexts/cart";
-// import CartSheet from "./cart-sheet";
+import { CartContext } from "./contexts/cart";
+import CartSheet from "./cart-sheet";
 import CategoryProducts from "./category-products";
 
 interface CatalogoCategoriesProps {
@@ -28,7 +28,7 @@ const CatalogoCategories = ({
   const handleCategoryClick = (category: Category) => {
     setSelectedCategory(category);
   };
-  // const { products, total, toggleCart, totalQuantity } = useContext(CartContext);
+  const { products, total, toggleCart, totalQuantity } = useContext(CartContext);
   const getCategoryButtonVariant = (category: Category) => {
     return selectedCategory === category ? "default" : "secondary";
   };
@@ -70,15 +70,12 @@ const CatalogoCategories = ({
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
 
-      {/* <h3 className="px-5 pt-2 font-semibold">
-        {CATEGORY_LABELS[selectedCategory]}
-      </h3> */}
-
       <CategoryProducts
         categoryProducts={productsByCategory[selectedCategory] ?? []}
       />
 
-      {/* {products.length > 0 && (
+      {/* VER CARRINHO */}
+      {products.length > 0 && (
         <div className="fixed bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-white px-5 py-3">
           <div>
             <p className="text-xs text-muted-foreground">Total dos pedidos</p>
@@ -92,7 +89,7 @@ const CatalogoCategories = ({
           <Button onClick={toggleCart}>Ver carrinho</Button>
           <CartSheet />
         </div>
-      )} */}
+      )}
     </div>
   );
 };

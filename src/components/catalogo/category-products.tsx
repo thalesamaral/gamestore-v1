@@ -39,7 +39,7 @@ const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
               src={product.imageUrl}
               alt={product.name}
               fill
-              className="rounded-lg object-contain"
+              className="rounded-lg object-cover"
             />
           </div>
         </Link>

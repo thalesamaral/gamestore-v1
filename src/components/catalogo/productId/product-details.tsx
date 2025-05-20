@@ -28,6 +28,10 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     });
   };
   const handleIncreaseQuantity = () => {
+    if (quantity >= product.stock) {
+      alert("Estoque máximo atingido.");
+      return quantity;
+    }
     setQuantity((prev) => prev + 1);
   };
   const handleAddToCart = () => {
@@ -75,22 +79,28 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </div>
           </div>
 
-          {/* PREÇO */}
+          {/* PREÇO E ESTOQUE */}
           <h3 className="text-xl font-semibold">
             {FormatMonetaryValue(product.price)}
           </h3>
+          <p className="text-sm text-muted-foreground">
+            Quantidade em estoque:{" "}
+            <span className="font-bold text-purple-500">
+              {new Intl.NumberFormat("pt-BR").format(product.stock)}
+            </span>
+          </p>
 
           {/* SOBRE */}
           <h4 className="mt-4 font-semibold">Sobre</h4>
           <ScrollArea className="h-3/4">
-            <div className="mb-4 space-y-3">
+            <div className="space-y-3 pr-2 pb-10">
               <p className="text-sm text-muted-foreground">
                 {product.description}
               </p>
             </div>
           </ScrollArea>
         </div>
-        <Button className="w-full rounded-full" onClick={handleAddToCart}>
+        <Button className="mt-4 w-full rounded-full" onClick={handleAddToCart}>
           Adicionar ao carrinho
         </Button>
         <CartSheet />
