@@ -1,6 +1,5 @@
 import { useContext } from "react";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Sheet,
@@ -10,13 +9,49 @@ import {
 } from "@/components/ui/sheet";
 import { FormatMonetaryValue } from "@/lib/currency";
 
-import { CartContext } from "./contexts/cart";
+import { CartContext, CartProduct } from "./contexts/cart";
 import CartProductItem from "./cart-product-item";
-// import FinishOrderDialog from "./finish-order-dialog";
+import { Button } from "../ui/button";
 
 const CartSheet = () => {
-  // const [finishOrderDialogIsOpen, setFinishOrderDialogIsOpen] = useState(false);
   const { isOpen, toggleCart, products, total } = useContext(CartContext);
+
+  function ConvertOrderToASCII(products: CartProduct[]) {
+    const lines = [];
+    lines.push("Olá gostaria de finalizar meu pedido que iniciei na Gamestore:")
+    lines.push("🛒 *Resumo do Pedido:*");
+    lines.push("```");
+    lines.push(`Produto              Qtd    Preço`);
+    lines.push("-----------------------------------");
+
+    products.forEach((product) => {
+      const name = product.name.slice(0, 20).padEnd(20, " ");
+      const qty = String(product.quantity).padStart(3, " ");
+      const price = product.price.toFixed(2).padStart(8, " ");
+      lines.push(`${name}${qty} ${price}`);
+    });
+
+    lines.push("-----------------------------------");
+    const total = products
+      .reduce((sum, p) => sum + p.quantity * p.price, 0)
+      .toFixed(2);
+    lines.push(
+      `Total               ${"".padStart(3)} ${total.padStart(8, " ")}`
+    );
+    lines.push("```");
+
+    const message = lines.join("\n");
+    return encodeURIComponent(message);
+  }
+
+  function handleSendMessage() {
+    const WhastAppLinkApi = "https://api.whatsapp.com/send?phone=";
+    const PhoneNumer = "5561998303657";
+    window.open(
+      `${WhastAppLinkApi}${PhoneNumer}&text=${ConvertOrderToASCII(products)}`,
+      "_blank"
+    );
+  }
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
       <SheetContent className="w-[80%]">
@@ -41,14 +76,10 @@ const CartSheet = () => {
           </Card>
           <Button
             className="w-full rounded-full"
-            // onClick={() => setFinishOrderDialogIsOpen(true)}
+            onClick={() => handleSendMessage()}
           >
             Finalizar pedido
           </Button>
-          {/* <FinishOrderDialog
-            open={finishOrderDialogIsOpen}
-            onOpenChange={setFinishOrderDialogIsOpen}
-          /> */}
         </div>
       </SheetContent>
     </Sheet>
