@@ -70,7 +70,6 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               </Button>
               <p className="w-6">{quantity}</p>
               <Button
-                variant="destructive"
                 className="h-8 w-8 rounded-xl"
                 onClick={handleIncreaseQuantity}
               >
@@ -85,7 +84,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           </h3>
           <p className="text-sm text-muted-foreground">
             Quantidade em estoque:{" "}
-            <span className="font-bold text-purple-500">
+            <span className="font-bold text-purple-600">
               {new Intl.NumberFormat("pt-BR").format(product.stock)}
             </span>
           </p>

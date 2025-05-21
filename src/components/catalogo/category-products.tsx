@@ -26,20 +26,19 @@ const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
             </p>
             <p className="text-sm text-muted-foreground">
               Quantidade em estoque:{" "}
-              <span className="font-bold text-purple-500">
+              <span className="font-bold text-purple-600">
                 {new Intl.NumberFormat("pt-BR").format(product.stock)}
               </span>
             </p>
           </div>
 
           {/* DIREITA */}
-          <div className="relative min-h-[82px] min-w-[120px]">
+          <div className="relative min-h-[120px] min-w-[120px]">
             <Image
-              // src={"/game-product.jpeg"}
               src={product.imageUrl}
               alt={product.name}
               fill
-              className="rounded-lg object-cover"
+              className="rounded-lg"
             />
           </div>
         </Link>

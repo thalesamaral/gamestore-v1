@@ -30,7 +30,7 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
         src={product.imageUrl}
         alt={product.name}
         fill
-        className="object-cover"
+        // className="object-fill"
       />
 
       <Button
