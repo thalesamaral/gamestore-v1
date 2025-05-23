@@ -14,7 +14,6 @@ interface ProductProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   product?: Product;
-  // category?: Category;
 }
 
 export function ProductSheet({ open, setOpen, product }: ProductProps) {

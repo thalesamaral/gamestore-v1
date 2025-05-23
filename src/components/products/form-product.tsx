@@ -34,7 +34,6 @@ interface FormProductProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   product?: Product;
-  // defaultValues?: ProductSchemaType;
 }
 
 export function FormProduct({ open, setOpen, product }: FormProductProps) {
@@ -72,7 +71,7 @@ export function FormProduct({ open, setOpen, product }: FormProductProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="name"
@@ -181,7 +180,7 @@ export function FormProduct({ open, setOpen, product }: FormProductProps) {
             </FormItem>
           )}
         />
-        {/* <Button type="submit">Submit</Button> */}
+
         <div className="flex gap-2 w-full justify-end">
           <Button
             type="button"

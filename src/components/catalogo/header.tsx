@@ -32,7 +32,6 @@ const CatalogoHeader = () => {
         src={"/game-wallpaper.avif"}
         alt={"game-wallpaper"}
         fill
-        className="object-cover"
       />
     </div>
   );
