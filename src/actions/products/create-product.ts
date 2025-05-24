@@ -17,7 +17,6 @@ export async function CreateProduct(params: CreateProductParams) {
   await db.product.create({
     data: {
       ...params,
-      // id: product.id,
     },
   });
 

@@ -18,7 +18,9 @@ const CartSheet = () => {
 
   function ConvertOrderToASCII(products: CartProduct[]) {
     const lines = [];
-    lines.push("Olá gostaria de finalizar meu pedido que iniciei na Gamestore:")
+    lines.push(
+      "Olá gostaria de finalizar meu pedido que iniciei na Gamestore:"
+    );
     lines.push("🛒 *Resumo do Pedido:*");
     lines.push("```");
     lines.push(`Produto              Qtd    Preço`);
@@ -45,13 +47,20 @@ const CartSheet = () => {
   }
 
   function handleSendMessage() {
-    const WhastAppLinkApi = "https://api.whatsapp.com/send?phone=";
-    const PhoneNumer = "5561998303657";
+    const WhastappLinkApi = "https://api.whatsapp.com/send?phone=";
+    const PhoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+
+    if (!PhoneNumber) {
+      console.error("Número de telefone não definido.");
+      return;
+    }
+
     window.open(
-      `${WhastAppLinkApi}${PhoneNumer}&text=${ConvertOrderToASCII(products)}`,
+      `${WhastappLinkApi}${PhoneNumber}&text=${ConvertOrderToASCII(products)}`,
       "_blank"
     );
   }
+
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
       <SheetContent className="w-[80%]">
