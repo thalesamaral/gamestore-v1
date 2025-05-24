@@ -3,9 +3,17 @@ import { Head } from "@/components/products/head";
 import ProductsHeader from "@/components/products/header";
 import { ListProducts } from "@/components/products/list-products";
 
-export default async function ProductsPage() {
-  const products = await GetProducts();
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
+export default async function ProductsPage() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/login");
+  }
+
+  const products = await GetProducts();
   return (
     <>
       <div>
