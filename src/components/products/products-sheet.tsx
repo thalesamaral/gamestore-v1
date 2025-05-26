@@ -8,28 +8,26 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Product } from "@prisma/client";
-import { FormProduct } from "./form-product";
+import { ProductsForm } from "./products-form";
 
-interface ProductProps {
+interface ProductsSheetProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   product?: Product;
 }
 
-export function ProductSheet({ open, setOpen, product }: ProductProps) {
+export function ProductsSheet({ open, setOpen, product }: ProductsSheetProps) {
   return (
     <>
-      <Sheet open={open} onOpenChange={() => setOpen(!open)}>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent>
-          <SheetHeader>
+          <SheetHeader className="mb-8">
             <SheetTitle>Formulário</SheetTitle>
             <SheetDescription>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Preencha todos os dados!
             </SheetDescription>
-            <div>
-              <FormProduct open={open} setOpen={setOpen} product={product} />
-            </div>
           </SheetHeader>
+          <ProductsForm setOpen={setOpen} product={product} />
         </SheetContent>
       </Sheet>
     </>

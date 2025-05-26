@@ -11,24 +11,24 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Product } from "@prisma/client";
 
-interface ProductAlertDeleteProps {
+interface AlertDeleteProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   product: Product;
 }
 
-export function ProductAlertDelete({
+export function AlertDelete({
   open,
   setOpen,
   product,
-}: ProductAlertDeleteProps) {
+}: AlertDeleteProps) {
   async function HandleDelete() {
     await DeleteProduct({ id: product.id });
-    setOpen(!open);
+    setOpen(true);
   }
 
   return (
-    <AlertDialog open={open}>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
@@ -40,9 +40,7 @@ export function ProductAlertDelete({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => setOpen(!open)}>
-            Cancelar
-          </AlertDialogCancel>
+          <AlertDialogCancel>Cancelar</AlertDialogCancel>
           <AlertDialogAction onClick={() => HandleDelete()}>
             Continuar
           </AlertDialogAction>

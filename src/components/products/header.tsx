@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { signOut } from "next-auth/react";
 
-const ProductsHeader = () => {
+const Header = () => {
   const router = useRouter();
   const handleBackClick = () => router.replace("/");
   const handleLogoutClick = () => signOut({ callbackUrl: "/" });
@@ -34,4 +34,4 @@ const ProductsHeader = () => {
   );
 };
 
-export default ProductsHeader;
+export default Header;

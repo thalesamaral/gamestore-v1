@@ -1,20 +1,28 @@
 "use client";
-import { useState } from "react";
-
 import { Button } from "../ui/button";
-import { ProductSheet } from "./product-sheet";
 import { FilePlus } from "lucide-react";
+import { Product } from "@prisma/client";
 
-export default function AddProductButton() {
-    const [open, setOpen] = useState(false);
+interface AddProductButtonProps {
+  setOpen: (open: boolean) => void;
+  setSelectedProduct: (product: Product | undefined) => void;
+}
 
-    return (
-        <>
-            <Button onClick={() => setOpen(true)}>
-                <FilePlus />
-                Adicionar
-            </Button>
-            <ProductSheet open={open} setOpen={setOpen} />
-        </>
-    );
+export function AddProductButton({
+  setOpen,
+  setSelectedProduct,
+}: AddProductButtonProps) {
+  return (
+    <>
+      <Button
+        onClick={() => {
+          setSelectedProduct(undefined); // Novo produto
+          setOpen(true);
+        }}
+      >
+        <FilePlus />
+        Adicionar
+      </Button>
+    </>
+  );
 }

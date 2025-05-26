@@ -11,28 +11,29 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useState } from "react";
-import { ProductSheet } from "./product-sheet";
 import { Product } from "@prisma/client";
-import { ProductAlertDelete } from "./product-alert-delete";
+import { AlertDelete } from "./alert-delete";
 
-interface ProductActionColumnProps {
+interface ActionColumnProps {
   product: Product;
+  setOpen: (open: boolean) => void;
+  setSelectedProduct: (product: Product) => void;
 }
 
-export function ProductActionColumn({ product }: ProductActionColumnProps) {
-  const [open, setOpen] = useState(false);
+export function ActionColumn({
+  product,
+  setOpen,
+  setSelectedProduct,
+}: ActionColumnProps) {
   const [openDelete, setOpenDelete] = useState(false);
 
   return (
     <>
-      {open && <ProductSheet open setOpen={setOpen} product={product} />}
-      {openDelete && (
-        <ProductAlertDelete
-          open={openDelete}
-          setOpen={setOpenDelete}
-          product={product}
-        />
-      )}
+      <AlertDelete
+        open={openDelete}
+        setOpen={setOpenDelete}
+        product={product}
+      />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline">
@@ -42,7 +43,12 @@ export function ProductActionColumn({ product }: ProductActionColumnProps) {
         <DropdownMenuContent>
           <DropdownMenuLabel>Ações</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => setOpen(true)}>
+          <DropdownMenuItem
+            onClick={() => {
+              setSelectedProduct(product); // Produto atual
+              setOpen(true);
+            }}
+          >
             Editar
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpenDelete(true)}>

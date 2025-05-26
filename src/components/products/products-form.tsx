@@ -30,13 +30,12 @@ import {
   SelectValue,
 } from "../ui/select";
 
-interface FormProductProps {
-  open: boolean;
+interface ProductsFormProps {
   setOpen: (open: boolean) => void;
   product?: Product;
 }
 
-export function FormProduct({ open, setOpen, product }: FormProductProps) {
+export function ProductsForm({ setOpen, product }: ProductsFormProps) {
   // 1. Define your form.
   const form = useForm<ProductSchemaType>({
     resolver: zodResolver(ProductSchema),
@@ -44,7 +43,7 @@ export function FormProduct({ open, setOpen, product }: FormProductProps) {
       name: product?.name || "",
       description: product?.description || "",
       price: product?.price || 0,
-      category: product?.category || Category.OTHER,
+      category: product?.category || Category.GAME,
       imageUrl: product?.imageUrl || "",
       stock: product?.stock,
     },
@@ -174,7 +173,11 @@ export function FormProduct({ open, setOpen, product }: FormProductProps) {
             <FormItem>
               <FormLabel>Link da imagem</FormLabel>
               <FormControl>
-                <Input placeholder="Adicione o link..." {...field} type="text" />
+                <Input
+                  placeholder="Adicione o link..."
+                  {...field}
+                  type="text"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -185,7 +188,7 @@ export function FormProduct({ open, setOpen, product }: FormProductProps) {
           <Button
             type="button"
             variant="outline"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen(false)}
           >
             <PanelTopClose size={16} />
             Cancelar

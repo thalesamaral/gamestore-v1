@@ -3,14 +3,22 @@
 import { CATEGORY_LABELS } from "@/schemas/product-schema";
 import { Product } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { ProductActionColumn } from "./product-action-column";
+import { ActionColumn } from "./action-column";
 import { FormatMonetaryValue } from "@/lib/currency";
 import Image from "next/image";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const productColumns: ColumnDef<Product>[] = [
+interface ColumnsProps {
+  setOpen: (open: boolean) => void;
+  setSelectedProduct: (product: Product) => void;
+}
+
+export const columns = ({
+  setOpen,
+  setSelectedProduct,
+}: ColumnsProps): ColumnDef<Product>[] => [
   // {
   //   accessorKey: "id",
   //   header: "Id",
@@ -24,7 +32,7 @@ export const productColumns: ColumnDef<Product>[] = [
     header: "Descrição",
     cell: ({ row: { original: product } }) => (
       <span className="line-clamp-4">{product.description}</span>
-    )
+    ),
   },
   {
     accessorKey: "price",
@@ -46,7 +54,7 @@ export const productColumns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "imageUrl",
-    header: "ImageUrl",
+    header: "Imagem",
     cell: ({ row: { original: product } }) => (
       <div className="relative min-h-[82px] min-w-[120px]">
         <Image
@@ -62,7 +70,11 @@ export const productColumns: ColumnDef<Product>[] = [
     accessorKey: "action",
     header: "Ações",
     cell: ({ row: { original: product } }) => (
-      <ProductActionColumn product={product} />
+      <ActionColumn
+        product={product}
+        setOpen={setOpen}
+        setSelectedProduct={setSelectedProduct}
+      />
     ),
   },
 ];
