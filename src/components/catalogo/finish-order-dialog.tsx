@@ -68,11 +68,11 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
   return (
     <>
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerTrigger>
+        <DrawerTrigger asChild>
           <Button className="w-full rounded-full">Finalizar pedido</Button>
         </DrawerTrigger>
-        <DrawerContent>
-          <DrawerHeader>
+        <DrawerContent className="sm:max-w-xl ml-auto">
+          <DrawerHeader className="sm:text-center">
             <DrawerTitle>Finalizar Pedido</DrawerTitle>
             <DrawerDescription>
               Você será redirecionado para o Whatsapp da loja!
@@ -85,7 +85,7 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
             >
               Confirmar
             </Button>
-            <DrawerClose>
+            <DrawerClose asChild>
               <Button variant="outline" className="w-full rounded-full">
                 Cancelar
               </Button>

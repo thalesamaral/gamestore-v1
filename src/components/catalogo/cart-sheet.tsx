@@ -19,7 +19,7 @@ const CartSheet = () => {
 
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
-      <SheetContent className="w-[80%]">
+      <SheetContent className="sm:max-w-md">
         <SheetHeader>
           <SheetTitle className="text-left">Carrinho</SheetTitle>
         </SheetHeader>

@@ -1,9 +1,9 @@
-import HomeButtons from "@/components/home/home-buttons";
+import { HeroSection } from "@/components/home/hero";
 
 const HomePage = () => {
   return (
     <>
-      <HomeButtons />
+      <HeroSection />
     </>
   );
 };

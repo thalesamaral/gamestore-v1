@@ -18,18 +18,21 @@ export default function HomeButtons() {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 py-8 lg:py-28 gap-12 md:px-8">
-      <div className="space-y-5 max-w-4xl mx-auto text-center">
-        <h1 className="text-5xl text-primary pb-20">Gamestore</h1>
-        <div className="flex flex-col gap-2 justify-center">
-          <Button variant="outline" onClick={handleClick}>
-            Cadastro de Produtos
+    <>
+      <div className="mt-12 justify-center items-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex">
+        <Button
+          variant="outline"
+          onClick={handleClick}
+          className="px-10 w-full block sm:w-auto hover:shadow-2xl"
+        >
+          Administrar Produtos
+        </Button>
+        <Link href="/catalogo">
+          <Button className="px-10 w-full duration-300 block sm:w-auto hover:shadow-2xl">
+            Catálogo Público
           </Button>
-          <Link href="/catalogo">
-            <Button className="w-full">Catálogo Público</Button>
-          </Link>
-        </div>
+        </Link>
       </div>
-    </div>
+    </>
   );
 }

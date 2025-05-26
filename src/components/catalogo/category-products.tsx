@@ -13,7 +13,7 @@ const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
         <Link
           key={product.id}
           href={`/catalogo/${product.id}`}
-          className="flex items-center justify-between gap-10 border-b py-3"
+          className="flex items-center justify-between gap-8 border-b pb-3"
         >
           {/* ESQUERDA */}
           <div>
@@ -26,7 +26,7 @@ const CategoryProducts = ({ categoryProducts }: ProductsProps) => {
             </p>
             <p className="text-sm text-muted-foreground">
               Quantidade em estoque:{" "}
-              <span className="font-bold text-purple-600">
+              <span className="font-bold text-primary">
                 {new Intl.NumberFormat("pt-BR").format(product.stock)}
               </span>
             </p>

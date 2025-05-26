@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <div className="relative h-[100px] w-full">
-      <h1 className="text-4xl text-center py-10">Cadastro de Produtos</h1>
+      <h1 className="text-4xl text-center py-10">Cadastro</h1>
       <Button
         variant="secondary"
         size="icon"

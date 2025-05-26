@@ -84,7 +84,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           </h3>
           <p className="text-sm text-muted-foreground">
             Quantidade em estoque:{" "}
-            <span className="font-bold text-purple-600">
+            <span className="font-bold text-primary">
               {new Intl.NumberFormat("pt-BR").format(product.stock)}
             </span>
           </p>

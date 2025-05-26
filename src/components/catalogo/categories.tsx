@@ -33,7 +33,7 @@ const CatalogoCategories = ({
     return selectedCategory === category ? "default" : "secondary";
   };
   return (
-    <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl bg-white">
+    <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl bg-white pb-20">
       <div className="p-5">
         <div className="flex items-center gap-3">
           <Image
@@ -44,7 +44,7 @@ const CatalogoCategories = ({
           />
           <div>
             <h2 className="text-lg font-semibold">{"Gamestore"}</h2>
-            <p className="text-xs opacity-55">{"DESCRIÇÃO DA LOJA"}</p>
+            <p className="text-xs opacity-55">{"A loja perfeita para gamers!"}</p>
           </div>
         </div>
         <div className="mt-3 flex items-center gap-1 text-xs text-green-500">
@@ -76,7 +76,7 @@ const CatalogoCategories = ({
 
       {/* VER CARRINHO */}
       {products.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-white px-5 py-3">
+        <div className="fixed bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-purple-200 px-5 py-3">
           <div>
             <p className="text-xs text-muted-foreground">Total dos pedidos</p>
             <p className="text-sm font-semibold">
