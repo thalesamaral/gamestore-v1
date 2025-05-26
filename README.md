@@ -1,65 +1,52 @@
 # Gamestore
 
-### TODO List
+## TODO List
 
 - [x] Página do Administrador
 - [x] Gestão de estoque (CRUD)
 - [x] Catálogo de produtos com carrinho
 - [x] Finalizar o pedido contatando o WhatsApp do vendedor
-- [ ] Authentication with AuthJS or NextAuthJS
-- [ ] Responsividade
+- [x] FavIcon image
+- [x] Autenticação com NextAuthJS
+- [x] Mensagem antes de finalizar produto
+  - pop-up: "Você será redirecionado para o Whatsapp da loja!"
+- [x] Melhorar Scroll e responsividade
+- [x] HomePage com Float UI
+- [x] Apresentar que usuário está logado
+- [x] Descrição da loja
+- [x] Descrição do formulário
 
-### Setup
-> Instale: NodeJS v.20 e PostgreSQL v.17. Versões superiores não foram testadas!
+# Setup
+> Instale: NodeJS v.20 e PostgreSQL v.17. Outras versões não foram testadas!
 
-- inicialize o projeto com o `npm install`
-- adicione o arquivo `.env` apontando para o PostgreSQL local, conforme código abaixo:
+## 1. Adicione o Arquivo `.env` na pasta raiz da aplicação
+
+### 1.1 Aponte para o PostgreSQL local no arquivo:
   ```bash
   DATABASE_URL="postgresql://postgres:YOURPASSWORD@localhost:5432/gamestore"
   DIRECT_URL="postgresql://postgres:YOURPASSWORD@localhost:5432/gamestore"
   ```
+
+### 1.2 Para configurar `NEXTAUTH_SECRET` para NextAuth.js, siga estes passos:
+- **Gere a Chave Secreta**: Abra seu terminal e execute:
+    ```bash
+    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+    ```
+    - Você também pode gerar usando este link: https://generate-secret.vercel.app/32
+    - Isso gerará uma string segura codificada em base64.
+- Adicione a Chave Secreta ao arquivo `.env`:
+    ```bash
+    NEXTAUTH_SECRET=seu_segredo_gerado
+    ```
+    - Substitua seu_segredo_gerado pela sua chave real.
+
+### 1.3 Adicione o número de Whatsapp que a aplicação irá utilizar, ao arquivo `.env`:
+  ```bash
+  NEXT_PUBLIC_PHONE_NUMBER="5561900000000"
+  ```
+
+## 2. Comandos
+- inicialize o projeto com o `npm install`
 - execute o banco com o comando `npx prisma migrate dev`
 - inicie a aplicação com o comando `npm run dev`
 - abrir em [http://localhost:3000](http://localhost:3000)
-<hr>
-<hr>
-<br>
-
-# Next.js
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
