@@ -27,5 +27,6 @@ export async function UpdateProduct({
     where: { id },
     data: { name, description, price, category, stock, imageUrl },
   });
-  revalidatePath("/products");
+  
+  ["/products", "/catalogo"].forEach((path) => revalidatePath(path));
 }

@@ -20,5 +20,5 @@ export async function CreateProduct(params: CreateProductParams) {
     },
   });
 
-  revalidatePath("/products");
+  ["/products", "/catalogo"].forEach((path) => revalidatePath(path));
 }

@@ -12,5 +12,5 @@ export async function DeleteProduct({ id }: DeleteProductParams) {
     where: { id },
   });
 
-  revalidatePath("/products");
+  ["/products", "/catalogo"].forEach((path) => revalidatePath(path));
 }
